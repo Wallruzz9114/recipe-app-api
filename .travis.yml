@@ -1,0 +1,15 @@
+language: python
+python:
+  - '3.7'
+
+install:
+  - 'pip install pipenv'
+  - 'pipenv sync'
+
+services:
+  - docker
+
+before_script: 'pipenv install docker-compose'
+
+script:
+  - 'docker-compose run app sh -c "python manage.py test && autopep8"'
