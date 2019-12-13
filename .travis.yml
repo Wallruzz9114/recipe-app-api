@@ -3,12 +3,12 @@ python:
   - '3.7'
 
 install:
-  - 'pip install pipenv'
+  - pip install pipenv
 
 services:
   - docker
 
-before_script: 'pipenv install docker-compose'
+before_script: pipenv install docker-compose
 
 script:
   - docker-compose run app sh -c "python manage.py test && flake8"
