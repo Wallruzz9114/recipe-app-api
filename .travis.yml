@@ -11,4 +11,4 @@ services:
 before_script: 'pipenv install docker-compose'
 
 script:
-  - 'docker-compose run app sh -c "python manage.py test && autopep8"'
+  - 'docker-compose run app sh -c "python manage.py test && flake8"'
