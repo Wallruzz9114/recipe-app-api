@@ -5,7 +5,7 @@ LABEL Jose Pinto
 # install dependencies
 RUN apk update && \
   apk add --virtual build-deps gcc python-dev musl-dev && \
-  apk add postgresql-dev && apk add libffi-dev \
+  apk add postgresql-dev && apk add libffi-dev && \
   apk add netcat-openbsd
 
 # set environment varibles
