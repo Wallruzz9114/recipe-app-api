@@ -5,11 +5,11 @@ verify_ssl = true
 
 [dev-packages]
 pycodestyle = "*"
-flake8 = "*"
 
 [packages]
 django = ">=2.1.3,<2.2.0"
 djangorestframework = ">=3.9.0,<3.10.0"
+flake8 = "*"
 
 [requires]
 python_version = "3.7"
