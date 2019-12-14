@@ -8,7 +8,9 @@ install:
 services:
   - docker
 
-before_script: pipenv install docker-compose
+before_script:
+  - pipenv install flake8
+  - pipenv install docker-compose
 
 script:
   - docker-compose run app sh -c "python manage.py test && flake8"
