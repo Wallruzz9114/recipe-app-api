@@ -15,6 +15,7 @@ services:
       - DB_NAME=recipes_db
       - DB_USER=postgres
       - DB_PASS=postgres
+      - DB_PORT=5432
     depends_on:
       - db
 
