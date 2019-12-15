@@ -3,10 +3,15 @@ FROM python:3.7-alpine
 LABEL Jose Pinto
 
 # install dependencies
-RUN apk update && \
-  apk add --virtual build-deps gcc python-dev musl-dev && \
-  apk add postgresql-dev libffi-dev make && \
-  apk add netcat-openbsd
+# RUN apk update && \
+#   apk add --virtual build-deps gcc python-dev musl-dev && \
+#   apk add postgresql-dev libffi-dev make && \
+#   apk add netcat-openbsd
+
+RUN apk add --update --no-cache postgresql-client
+
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+  gcc python-dev musl-dev linux-headers postgresql-dev libffi-dev make
 
 # set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -18,6 +23,8 @@ COPY Pipfile* /tmp/
 RUN cd /tmp && pipenv lock --requirements > requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
+
+RUN apk del .tmp-build-deps
 
 # set working directory
 RUN mkdir /app
