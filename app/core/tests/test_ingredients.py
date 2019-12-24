@@ -5,7 +5,7 @@ from.test_users import sample_user
 
 class IngredientTests(TestCase):
     def test_ingredient_str(self):
-        """Test the ingredient string representation"""
+        '''Test the ingredient string representation'''
         ingredient = Ingredient.objects.create(
             user=sample_user(),
             name='Cucumber'
