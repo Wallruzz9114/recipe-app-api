@@ -8,10 +8,10 @@ LABEL Jose Pinto
 #   apk add postgresql-dev libffi-dev make && \
 #   apk add netcat-openbsd
 
-RUN apk add --update --no-cache postgresql-client
+RUN apk add --update --no-cache postgresql-client jpeg-dev
 
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
-  gcc python-dev musl-dev linux-headers postgresql-dev libffi-dev make
+  gcc python-dev musl-dev zlib zlib-dev linux-headers postgresql-dev libffi-dev make
 
 # set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -32,5 +32,9 @@ WORKDIR /app
 COPY ./app /app
 
 # create a user to run the application using docker and switch to it
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
 RUN adduser -D user
+RUN chown -R user:user /vol/
+RUN chmod -R 755 /vol/web
 USER user
